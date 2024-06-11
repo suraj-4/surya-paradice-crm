@@ -49,11 +49,11 @@ Route::group(['prefix' => 'admin'],function(){
     });
 });
 
-// Route::controller(RoomController::class)->group(function(){
-//     Route::post('admin/rooms','addRoom')->name('admin.rooms');
-// });
+Route::controller(RoomController::class)->group(function(){
+    Route::post('admin/rooms','addRoom')->name('admin.rooms');
+});
 
-Route::post('admin/rooms',[RoomController::class, 'addRoom'])->name('admin.rooms');
+// Route::post('admin/rooms',[RoomController::class, 'addRoom'])->name('admin.rooms');
 
 
 
