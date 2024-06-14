@@ -50,7 +50,7 @@
                             <td>{{$room->room_name}}</td>
                             <td>{{$room->room_type}}</td>
                             <td>{{$room->room_number}}</td>
-                            <td><div class="proccess">Booked</div></td>
+                            <td><div class="proccess">{{$room->room_status}}</div></td>
                             <td>
                               <!-- Button trigger modal -->
                               <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editRoomDataModal">
@@ -96,14 +96,14 @@
               <div class="form-group row mb-3">
                 <div class="col-6">
                   <label for="room_name">Room Name</label>
-                  <input type="text" name="room_name" class="form-control @error('room_name') is-invalid @enderror" placeholder="Enter Room name" id="room_name">
+                  <input type="text" name="room_name" class="form-control @error('room_name') is-invalid @enderror" id="room_name" placeholder="Enter Room name">
                   @error('room_name')
                     <p class="invalid-feedback">{{ $message }}</p>
                   @enderror
                 </div>
                 <div class="col-6">
-                  <label for="phone">Room Type</label>
-                  <input type="text" name="room_type" class="form-control @error('room_type') is-invalid @enderror" placeholder="Enter Room Type" id="room_type">
+                  <label for="room_type">Room Type</label>
+                  <input type="text" name="room_type" class="form-control @error('room_type') is-invalid @enderror" id="room_type" placeholder="Enter Room Type">
                   @error('room_type')
                     <p class="invalid-feedback">{{ $message }}</p>
                   @enderror
@@ -111,19 +111,22 @@
               </div>
               <div class="form-group row mb-3">
                 <div class="col-6">
-                  <label for="room_no">Room Number</label>
-                  <input type="text" name="room_no" class="form-control @error('room_no') is-invalid @enderror" placeholder="Enter Room No." id="room_no">
+                  <label for="room_number">Room Number</label>
+                  <input type="text" name="room_number" class="form-control @error('room_number') is-invalid @enderror" id="room_number" placeholder="Enter Room No.">
                 </div>
-                @error('room_no')
+                @error('room_number')
                   <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
                 <div class="col-6">
-                  <label for="id_proof">Room Status</label>
-                    <select class="form-select shadow-none">
+                  <label for="room_status">Room Status</label>
+                    <select name="room_status" class="form-select @error('room_status') is-invalid @enderror" id="room_status">
                         <option selected>Pending</option>
                         <option value="booked">Booked</option>
                         <option value="done">Done</option>
                     </select>
+                    @error('room_status')
+                      <p class="invalid-feedback">{{ $message }}</p>
+                    @enderror
                 </div>
               </div>
             </div>

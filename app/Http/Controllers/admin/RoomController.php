@@ -33,7 +33,7 @@ class RoomController extends Controller
         $rooms = new Room();
         $rooms->room_name = $request->room_name;
         $rooms->room_type = $request->room_type;
-        $rooms->room_number = $request->room_no;
+        $rooms->room_number = $request->room_number;
         $rooms->room_status = $request->room_status;
         $rooms->save();
         return redirect() -> route('admin.rooms') -> with('success', 'Room Added Successfully');

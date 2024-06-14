@@ -54,9 +54,6 @@ h4{
 
 }
 /* globle styling */
-[type=search]:focus-visible{
-    outline: none;
-}
 img{
 	max-width: 100%;
 	height: auto;
@@ -65,11 +62,7 @@ ul,ol{
 	padding: 0;
 	margin: 0;
 }
-label{
-	font-size: 0.875rem;
-    font-weight: 400;
-	color: #8a8a8a;
-}
+
 .btn:hover{
 	border: var(--border);
 }
@@ -82,17 +75,48 @@ label{
 .row .col-md-6{
 	margin-block: 1rem;
 }
-.form-control:focus {
+[type=search]:focus-visible{
+    outline: none;
+}
+label{
+	font-size: 0.875rem;
+    font-weight: 400;
+	color: #2c2c2c;
+}
+::placeholder,.form-control[type=file],
+.form-select{
+	font-size: 0.75rem;
+	font-weight: 400;
+	color: #8a8a8a;
+}
+
+.form-select {
+	height: 2.3rem;
+}
+.form-control:focus,
+.form-select:focus {
     border-color: var(--bgColorPrimary);
     box-shadow: none;
 }
 .form-control.is-invalid:focus, 
-.was-validated .form-control:invalid:focus{
+.was-validated .form-control:invalid:focus,
+.form-select.is-invalid:focus, 
+.was-validated .form-select:invalid:focus{
 	box-shadow: none;
 }
 .invalid-feedback{
 	font-size: 0.8rem;
 	margin-bottom: 0;
+}
+.dt-length label{
+	text-transform: capitalize;
+}
+.dt-paging-button{
+	width: 2.5rem;
+	height: 2.5rem;
+}
+option:selected{
+	background-color: var(--bgColorPrimary);
 }
 /* width */
 ::-webkit-scrollbar {
@@ -396,9 +420,7 @@ header{
     position: absolute;
     transform: translateY(-50%);
 }
-::placeholder,.form-control[type=file]{
-	font-size: 0.75rem;
-}
+
 .left_area,.right_area{
 	width: 50%;
 }
@@ -535,4 +557,15 @@ header{
 	font-size: 0.9rem;
     font-weight: 400;
 	color: #8a8a8a;
+}
+.table_img{
+	width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    padding: 0px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bgColorPrimary);
 }
