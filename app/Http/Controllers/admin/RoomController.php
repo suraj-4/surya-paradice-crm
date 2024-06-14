@@ -10,7 +10,7 @@ class RoomController extends Controller
 {
     //This method will show the All Rooms.
     public function showAllRooms(){
-        $rooms = Room::orderBy("created_at", "ASC")->get();
+        $rooms = Room::get();
         return view('admin.pages.rooms',[
             'rooms' => $rooms
         ]);
