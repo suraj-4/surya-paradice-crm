@@ -569,3 +569,10 @@ header{
     justify-content: center;
     color: var(--bgColorPrimary);
 }
+.tabel_dropdown{
+	padding: 0.25rem;
+}
+.tabel_dropdown .btn{
+	width: 100%;
+	text-align: left;
+}

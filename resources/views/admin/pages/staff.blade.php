@@ -17,7 +17,7 @@
             <div class="top_wrapper">
               <div class="heading"><h1>All Staff Details</h1></div>
               <!-- <div class="larger-btn"><a href="javaScript:void(0)"><i class="bi bi-plus-lg"></i> Add new</a></div> -->
-              <button type="button" class="btn larger-btn" data-bs-toggle="modal" data-bs-target="#addStaffDataModal">
+              <button type="button" class="btn larger-btn" data-bs-toggle="modal" data-bs-target="#addStaff">
                 <i class="bi bi-plus-lg"></i> Add new
               </button>
             </div>
@@ -33,7 +33,7 @@
                           <th>Mobile</th>
                           <th>Email</th>
                           <th>Address</th>
-                          <th>Joining Date</th>
+                          <th>Joining</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -51,11 +51,32 @@
                             <td>24/25 Road Kolkata</td>
                             <td>16/04/2024</td>
                             <td>
-                              <!-- Button trigger modal -->
-                              <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editStaffDataModal">
-                                <i class="bi bi-pencil-square"></i>
-                              </button>
-                              <a href="javaScript:void(0)" class="btn"><i class="bi bi-trash3"></i></a>                              
+                                <div class="dropdown">
+                                    <button class="btn custom-outline dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu tabel_dropdown">
+                                        <li>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                                <i class="bi bi-pencil-square"></i>
+                                                Edit
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#previewStaff">
+                                                <i class="bi bi-eye"></i>
+                                                Preview
+                                            </button>
+                                        </li>
+                                        <li><a class="btn" href="javaScript:void(0)">
+                                            <i class="bi bi-trash3"></i>
+                                            Delete
+                                        </a></li>
+                                    </ul>
+                                </div>
+                                                   
                             </td>
                           </tr>
                           
@@ -69,7 +90,7 @@
                           <th>Mobile</th>
                           <th>Email</th>
                           <th>Address</th>
-                          <th>Joining Date</th>
+                          <th>Joining</th>
                           <th>Action</th>
                         </tr>
                       </tfoot>
@@ -83,83 +104,125 @@
     <!-- main body area End -->
 
     <!-- Add Staff Data Modal -->
-    <div class="modal fade" id="addStaffDataModal">
+    <div class="modal fade" id="addStaff">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header heading">
-            <h2>Add New Details</h2>
-            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
             <form>
-              <div class="form-group row mb-2">
-                <div class="col-6">
-                  <input type="text" class="form-control shadow-none" placeholder="Enter full name">
+                <div class="modal-header heading">
+                    <h2>Add New Staff</h2>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="col-6">
-                  <input type="text" class="form-control shadow-none" placeholder="Enter phone No.">
+                <div class="modal-body">
+                    <div class="form-group row mb-2">
+                        <div class="col-6">
+                        <label for="staff_name">Staff Name</label>
+                        <input type="text" name="staff_name" class="form-control" id="staff_name" placeholder="Enter Full Name">
+                        </div>
+                        <div class="col-6">
+                        <label for="designation">Designation</label>
+                        <input type="text" name="designation" class="form-control" id="designation" placeholder="Enter Designation">
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <div class="col-6">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email Addres">
+                        </div>
+                        <div class="col-6">
+                        <label for="mobile">Mobile</label>
+                        <input type="text" name="mobile" class="form-control" id="mobile" placeholder="Enter Mobile No.">
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <div class="col-6">
+                        <label for="address">Address</label>
+                        <input type="text" name="address" class="form-control" id="address" placeholder="Enter Address">
+                        </div>
+                        <div class="col-6">
+                        <label for="joining">Joining Date</label>
+                        <input type="date" name="joining" id="joining" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <div class="col-12">
+                        <label for="image">Staff Image</label>
+                        <input type="file" name="image" id="image" class="form-control">
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="form-group row mb-2">
-                <div class="col-6">
-                  <input type="email" class="form-control shadow-none" placeholder="Enter email Addres">
+                <div class="modal-footer">
+                    <button type="submit" class="btn larger-btn"><i class="bi bi-plus-lg"></i> Add New</button>
                 </div>
-                <div class="col-6">
-                  <input type="file" class="form-control shadow-none" placeholder="Upload id proof">
-                </div>
-              </div>
-              <div class="form-group row mb-2">
-                <div class="col-6">
-                  <input type="text" class="form-control shadow-none" placeholder="Check in">
-                </div>
-                <div class="col-6">
-                  <input type="text" class="form-control shadow-none" placeholder="Check out">
-                </div>
-              </div>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn larger-btn">Add New</button>
-          </div>
         </div>
       </div>
     </div>
 
-    <!-- Add Staff Data Modal -->
-    <div class="modal fade" id="editStaffDataModal">
+    <!-- Edit Staff Data Modal -->
+    <div class="modal fade" id="editStaff">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
+            <form>
+                <div class="modal-header heading">
+                    <h2>Edit Staff Details</h2>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row mb-2">
+                        <div class="col-6">
+                        <label for="staff_name">Staff Name</label>
+                        <input type="text" name="staff_name" class="form-control" id="staff_name" placeholder="Enter Full Name">
+                        </div>
+                        <div class="col-6">
+                        <label for="designation">Designation</label>
+                        <input type="text" name="designation" class="form-control" id="designation" placeholder="Enter Designation">
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <div class="col-6">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email Addres">
+                        </div>
+                        <div class="col-6">
+                        <label for="mobile">Mobile</label>
+                        <input type="text" name="mobile" class="form-control" id="mobile" placeholder="Enter Mobile No.">
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <div class="col-6">
+                        <label for="address">Address</label>
+                        <input type="text" name="address" class="form-control" id="address" placeholder="Enter Address">
+                        </div>
+                        <div class="col-6">
+                        <label for="joining">Joining Date</label>
+                        <input type="date" name="joining" id="joining" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <div class="col-12">
+                        <label for="image">Staff Image</label>
+                        <input type="file" name="image" id="image" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn larger-btn"><i class="bi bi-pen"></i> Update</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preview Staff Data Modal -->
+    <div class="modal fade" id="previewStaff">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
           <div class="modal-header heading">
-            <h2>Edit Details</h2>
+            <h2>Preview Staff Details</h2>
             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form>
-              <div class="form-group row mb-2">
-                <div class="col-6">
-                  <input type="text" class="form-control shadow-none" placeholder="Enter full name">
-                </div>
-                <div class="col-6">
-                  <input type="text" class="form-control shadow-none" placeholder="Enter phone No.">
-                </div>
-              </div>
-              <div class="form-group row mb-2">
-                <div class="col-6">
-                  <input type="email" class="form-control shadow-none" placeholder="Enter email Addres">
-                </div>
-                <div class="col-6">
-                  <input type="file" class="form-control shadow-none" placeholder="Upload id proof">
-                </div>
-              </div>
-              <div class="form-group row mb-2">
-                <div class="col-6">
-                  <input type="text" class="form-control shadow-none" placeholder="Check in">
-                </div>
-                <div class="col-6">
-                  <input type="text" class="form-control shadow-none" placeholder="Check out">
-                </div>
-              </div>
-            </form>
+
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn larger-btn">Add New</button>
