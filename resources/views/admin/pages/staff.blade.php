@@ -79,6 +79,88 @@
                                                    
                             </td>
                           </tr>
+                          <tr>
+                            <td>
+                                <div class="table_img">
+                                    <img src="./assets/img/Surya-Avatar.png" alt="Surya-Avatar">
+                                </div>
+                            </td>
+                            <td>Styam Singh</td>
+                            <td>Assistant</td>
+                            <td>8521489063</td>
+                            <td>Styam852@gmail.com</td>
+                            <td>24/25 Road Kolkata</td>
+                            <td>16/04/2024</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn custom-outline dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu tabel_dropdown">
+                                        <li>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                                <i class="bi bi-pencil-square"></i>
+                                                Edit
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#previewStaff">
+                                                <i class="bi bi-eye"></i>
+                                                Preview
+                                            </button>
+                                        </li>
+                                        <li><a class="btn" href="javaScript:void(0)">
+                                            <i class="bi bi-trash3"></i>
+                                            Delete
+                                        </a></li>
+                                    </ul>
+                                </div>
+                                                   
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                                <div class="table_img">
+                                    <img src="./assets/img/Surya-Avatar.png" alt="Surya-Avatar">
+                                </div>
+                            </td>
+                            <td>Styam Singh</td>
+                            <td>Assistant</td>
+                            <td>8521489063</td>
+                            <td>Styam852@gmail.com</td>
+                            <td>24/25 Road Kolkata</td>
+                            <td>16/04/2024</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn custom-outline dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu tabel_dropdown">
+                                        <li>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                                <i class="bi bi-pencil-square"></i>
+                                                Edit
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#previewStaff">
+                                                <i class="bi bi-eye"></i>
+                                                Preview
+                                            </button>
+                                        </li>
+                                        <li><a class="btn" href="javaScript:void(0)">
+                                            <i class="bi bi-trash3"></i>
+                                            Delete
+                                        </a></li>
+                                    </ul>
+                                </div>
+                                                   
+                            </td>
+                          </tr>
                           
                           
                       </tbody>
