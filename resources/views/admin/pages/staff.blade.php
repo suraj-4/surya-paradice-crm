@@ -33,7 +33,7 @@
                   <table class="table-striped-columns display customerList" style="width:100%">
                       <thead class="custom-bg">
                         <tr>
-                          <!-- <th>Id</th> -->
+                          <th>Id</th>
                           <th>Image</th>
                           <th>Name</th>
                           <th>Designation</th>
@@ -48,7 +48,7 @@
                         @if ($staff ->isNotEmpty())
                           @foreach ($staff as $staff)
                           <tr>
-                            <!-- <td>{{$staff->staff_id}}</td> -->
+                            <td>{{$staff->staff_id}}</td>
                             <td>
                               <div class="table_img">
                                 @if ($staff->image != "")
@@ -69,10 +69,10 @@
                                   </button>
                                   <ul class="dropdown-menu tabel_dropdown">
                                       <li>
-                                          <!-- Button trigger modal -->
-                                          <a class="btn" href="{{route ('admin.editStaff', $staff->staff_id)}}" data-bs-toggle="modal" data-bs-target="#editStaff">
-                                            <i class="bi bi-pencil-square"></i> Edit
-                                          </a>
+                                            <!-- Button trigger modal -->
+                                            <a class="btn" href="{{Route ('admin.editStaff', $staff->staff_id)}}" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                              <i class="bi bi-pencil-square"></i> Edit
+                                            </a>
                                       </li>
                                       <li>
                                           <!-- Button trigger modal -->
@@ -94,7 +94,7 @@
                       </tbody>
                       <tfoot class="custom-bg">
                         <tr>
-                          <!-- <th>Id</th> -->
+                          <th>Id</th>
                           <th>Image</th>
                           <th>Name</th>
                           <th>Designation</th>
@@ -195,8 +195,8 @@
     <div class="modal fade" id="editStaff">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form action="{{route ('admin.updateStaff', $staff->staff_id)}}" method="POST" enctype="multipart/form-data">
-            @method('put')
+          <form action="{{Route ('admin.updateStaff', $staff-> staff_id)}}" method="POST" enctype="multipart/form-data">
+            @method('PUT')
             @csrf
             <div class="modal-header heading">
               <h2>Update Staff Details</h2>

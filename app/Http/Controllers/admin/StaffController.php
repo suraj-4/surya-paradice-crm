@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Staff;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Session; 
 
 class StaffController extends Controller
 {
@@ -71,8 +73,8 @@ class StaffController extends Controller
             $staff-> image = $imageName;
             $staff-> save();
         }
-        return redirect() -> route('admin.staff') -> with('success', 'Staff Added Successfully');
-        
+        // return redirect() -> route('admin.staff') -> with('success', 'Staff Added Successfully');
+        return redirect() -> back() -> with('success', 'Staff Added Successfully');
     }
 
     /**
@@ -86,18 +88,62 @@ class StaffController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Staff $staff)
-    {
-        $staff = Staff::findOrFail($staff);
-        return view ('staff.edit',['staff' => $staff]);
-    }
+    // public function edit($staff_id)
+    // {
+    //     $staff = Staff::findOrFail($staff_id);
+    //     return view ('staff.edit',['staff' => $staff]);
+    // }
 
     /**
      * Update the specified resource in storage.
      */
-    public function updateStaff(Request $request, Staff $staff)
+    public function updateStaff($id, Request $request)
     {
-        $staff = Staff::findOrFail($staff);
+        $staff = Staff::findOrFail($id);
+
+        $rule = [
+            'name' => 'required',
+            'designation' => 'required',
+            'mobile' => 'required|string|max:20',
+            'email' => 'required|email',
+            'address' => 'required',
+            'joining' => 'required',
+        ];
+
+        if ($request->hasFile('image')){
+            $rule['image'] = 'image';
+        }
+        $validater = Validator::make($request->all(), $rule);
+        if ($validater -> fails()){
+            return redirect() -> back() -> withErrors($validater) -> withInput();
+        }
+
+        $staff-> staff_name = $request->name;
+        $staff-> staff_designation = $request->designation;
+        $staff-> staff_email = $request->email;
+        $staff-> staff_mobile = $request->mobile;
+        $staff-> staff_address = $request->address;
+        $staff-> staff_joining_date = $request->joining;
+        $staff-> save();
+
+        if ($request->hasFile('image')){
+
+            // delete old image
+            File::delete(public_path('uploads/products'.$staff->image));
+
+            $image = $request->file('image');
+            $ext = $image->getClientOriginalExtension();
+            $imageName = time() . '.' . $ext; // Unique image name
+
+            // Store image in Product Directory
+            $image->move(public_path('admin/uploads/staff'), $imageName);
+
+            // Save image name in db
+            $staff-> image = $imageName;
+            $staff-> save();
+        }
+
+        return redirect() -> back() -> withErrors($validater) -> withInput();
     }
 
     /**
