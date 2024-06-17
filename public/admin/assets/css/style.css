@@ -1,36 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-*{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-body{
-	font-size: 100%;
-	font-family: "Poppins", sans-serif;
-}
-
-h1,h2,h3,h4,h5,h6{
-	margin: 0;
-	font-family: "Montserrat", sans-serif;
-}
-h1{
-	font-size: 1.5rem;
-	font-weight: 700;
-}
-h2{
-	font-size: 1.3rem;
-	font-weight: 700;
-}
-h3{
-	font-size: 1.2rem;
-	font-weight: 700;
-}
-h4{
-	font-size: 1rem;
-	font-weight: 400;
-}
-
 :root{
 	/* --bgColorPrimary: #007965;
 	--bgColorSecondary: #03c0a0;
@@ -51,9 +20,42 @@ h4{
 	--bgColorPrimary: #c60101;
     --bgColorSecondary: #fc3333;
 	--border: 0.063rem solid var(--bgColorPrimary);
-
+}
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body{
+	font-size: 100%;
+	font-family: "Poppins", sans-serif;
 }
 /* globle styling */
+h1,h2,h3,h4,h5,h6{
+	margin: 0;
+	font-family: "Montserrat", sans-serif;
+}
+h1{
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+h2{
+	font-size: 1.3rem;
+	font-weight: 700;
+}
+h3{
+	font-size: 1.2rem;
+	font-weight: 700;
+}
+h4{
+	font-size: 1rem;
+	font-weight: 400;
+}
+p{
+	font-size: 1rem;
+	margin-bottom: 0;
+}
+
 img{
 	max-width: 100%;
 	height: auto;
@@ -62,7 +64,10 @@ ul,ol{
 	padding: 0;
 	margin: 0;
 }
-
+a,a:hover{
+	text-decoration: none;
+	color: var(--textColorSecondary);
+}
 .btn:hover{
 	border: var(--border);
 }
@@ -575,4 +580,24 @@ header{
 .tabel_dropdown .btn{
 	width: 100%;
 	text-align: left;
+}
+.preview_content{
+	gap: 2rem;
+	display: flex;
+	align-items: center;
+	padding-block: 1.5rem;
+
+}
+.modal_img{
+	width: 10rem;
+	height: 10rem;
+	overflow: hidden;
+	border-radius: var(--border-radius);
+	border: 1px solid var(--bgColorPrimary);
+}
+.modal_content{
+	width: 50%;
+}
+.modal_content strong{
+	width: 50%;
 }

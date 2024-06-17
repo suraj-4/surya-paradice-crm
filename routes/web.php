@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\RoomController;
+use App\Http\Controllers\admin\StaffController;
 use App\Http\Controllers\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,12 +38,10 @@ Route::group(['prefix' => 'admin'],function(){
 
     // Authenticated Middleware for admin
     Route::group(['middleware' => 'admin.auth'], function(){
-
         Route::get('dashboard',[DashboardController::class, 'showDashboard'])->name('dashboard');
-        // Route::get('rooms',[DashboardController::class, 'showRooms'])->name('rooms');
         Route::get('rooms',[RoomController::class, 'showAllRooms'])->name('rooms');
         Route::get('booking',[DashboardController::class, 'showBooking'])->name('booking');
-        Route::get('staff',[DashboardController::class, 'showStaff'])->name('staff');
+        Route::get('staff',[StaffController::class, 'ahowAllStaff'])->name('staff');
         Route::get('reports',[DashboardController::class, 'showReports'])->name('reports');
 
         Route::get('logout',[LoginController::class, 'logout'])->name('admin.logout');
@@ -53,7 +52,10 @@ Route::controller(RoomController::class)->group(function(){
     Route::post('admin/rooms','addRoom')->name('admin.rooms');
 });
 
-// Route::post('admin/rooms',[RoomController::class, 'addRoom'])->name('admin.rooms');
-
+Route::controller(StaffController::class)->group(function(){
+    Route::post('admin/staff','addStaff')->name('admin.addStaff');
+    Route::get('admin/staff/{staff}/edit','edit')->name('admin.editStaff');
+    Route::put('admin/staff/{staff}','updateStaff')->name('admin.updateStaff');
+});
 
 
