@@ -70,11 +70,7 @@
                                   <ul class="dropdown-menu tabel_dropdown">
                                       <li>
                                           <!-- Button trigger modal -->
-                                          <!-- <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editStaff">
-                                              <i class="bi bi-pencil-square"></i>
-                                              Edit
-                                          </button> -->
-                                          <a class="btn" href="javaScript:void(0)" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                          <a class="btn" href="{{route ('admin.editStaff', $staff->staff_id)}}" data-bs-toggle="modal" data-bs-target="#editStaff">
                                             <i class="bi bi-pencil-square"></i> Edit
                                           </a>
                                       </li>
@@ -207,68 +203,68 @@
               <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="form-group row mb-2">
-                  <div class="col-6">
-                    <label for="name">Staff Name</label>
-                    <input type="text" name="name" value="{{old ('name')}}" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter Full Name">
-                    @error('name')
-                      <p class="invalid-feedback">{{$message}}</p>
-                    @enderror
-                  </div>
-                  <div class="col-6">
-                    <label for="designation">Designation</label>
-                    <input type="text" name="designation" value="{{old ('designation')}}" class="form-control @error('designation') is-invalid @enderror " id="designation" placeholder="Enter Designation">
-                    @error('designation')
-                      <p class="invalid-feedback">{{$message}}</p>
-                    @enderror
-                  </div>
+              <div class="form-group row mb-2">
+                <div class="col-6">
+                  <label for="name">Staff Name</label>
+                  <input type="text" name="name" value="{{old ('name',$staff->name)}}" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter Full Name">
+                  @error('name')
+                    <p class="invalid-feedback">{{$message}}</p>
+                  @enderror
                 </div>
-                <div class="form-group row mb-2">
-                  <div class="col-6">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" value="{{old ('email')}}" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Enter Email Addres">
-                    @error('email')
-                      <p class="invalid-feedback">{{$message}}</p>
-                    @enderror
-                  </div>
-                  <div class="col-6">
-                    <label for="mobile">Mobile</label>
-                    <input type="text" name="mobile" value="{{old ('mobile')}}" class="form-control @error('mobile') is-invalid @enderror" id="mobile" placeholder="Enter Mobile No.">
-                    @error('mobile')
-                      <p class="invalid-feedback">{{$message}}</p>
-                    @enderror
-                  </div>
+                <div class="col-6">
+                  <label for="designation">Designation</label>
+                  <input type="text" name="designation" value="{{old ('designation',$staff->designation)}}" class="form-control @error('designation') is-invalid @enderror " id="designation" placeholder="Enter Designation">
+                  @error('designation')
+                    <p class="invalid-feedback">{{$message}}</p>
+                  @enderror
                 </div>
-                <div class="form-group row mb-2">
-                  <div class="col-6">
-                    <label for="address">Address</label>
-                    <input type="text" name="address" cvalue="{{old ('address')}}" class="form-control @error('address') is-invalid @enderror" id="address" placeholder="Enter Address">
-                    @error('address')
-                      <p class="invalid-feedback">{{$message}}</p>
-                    @enderror
-                  </div>
-                  <div class="col-6">
-                    <label for="joining">Joining Date</label>
-                    <input type="date" name="joining" value="{{old ('joining')}}" id="joining" class="form-control @error('joining') is-invalid @enderror">
-                    @error('joining')
-                      <p class="invalid-feedback">{{$message}}</p>
-                    @enderror
-                  </div>
+              </div>
+              <div class="form-group row mb-2">
+                <div class="col-6">
+                  <label for="email">Email</label>
+                  <input type="email" name="email" value="{{old ('email',$staff->email)}}" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Enter Email Addres">
+                  @error('email')
+                    <p class="invalid-feedback">{{$message}}</p>
+                  @enderror
                 </div>
-                <div class="form-group row mb-2">
-                  <div class="col-12">
-                    <label for="image">Staff Image</label>
-                    <input type="file" name="image" value="{{old ('image')}}"  class="form-control @error('image') is-invalid @enderror" id="image">
-                    @error('image')
-                      <p class="invalid-feedback">{{$message}}</p>
-                    @enderror
-                  </div>
+                <div class="col-6">
+                  <label for="mobile">Mobile</label>
+                  <input type="text" name="mobile" value="{{old ('mobile',$staff->mobile)}}" class="form-control @error('mobile') is-invalid @enderror" id="mobile" placeholder="Enter Mobile No.">
+                  @error('mobile')
+                    <p class="invalid-feedback">{{$message}}</p>
+                  @enderror
                 </div>
+              </div>
+              <div class="form-group row mb-2">
+                <div class="col-6">
+                  <label for="address">Address</label>
+                  <input type="text" name="address" cvalue="{{old ('address',$staff->address)}}" class="form-control @error('address') is-invalid @enderror" id="address" placeholder="Enter Address">
+                  @error('address')
+                    <p class="invalid-feedback">{{$message}}</p>
+                  @enderror
+                </div>
+                <div class="col-6">
+                  <label for="joining">Joining Date</label>
+                  <input type="date" name="joining" value="{{old ('joining',$staff->joining)}}" id="joining" class="form-control @error('joining') is-invalid @enderror">
+                  @error('joining')
+                    <p class="invalid-feedback">{{$message}}</p>
+                  @enderror
+                </div>
+              </div>
+              <div class="form-group row mb-2">
+                <div class="col-12">
+                  <label for="image">Staff Image</label>
+                  <input type="file" name="image" value="{{old ('image',$staff->image)}}"  class="form-control @error('image') is-invalid @enderror" id="image">
+                  @error('image')
+                    <p class="invalid-feedback">{{$message}}</p>
+                  @enderror
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn larger-btn"><i class="bi bi-plus-lg"></i> Update</button>
             </div>
-            </form>
+          </form>
         </div>
       </div>
     </div>
