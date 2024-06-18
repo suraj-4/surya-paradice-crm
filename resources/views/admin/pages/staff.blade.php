@@ -23,9 +23,9 @@
             <div class="row">
             @if (Session::has('Success'))
             <div class="col-lg-12 mt-4">
-                <div class="alert alert-success">
-                    {{Session::get('Success')}}
-                </div>
+              <div class="alert alert-success">
+                {{Session::get('Success')}}
+              </div>
             </div>
             @endif
             <div class="col-lg-12">
@@ -76,15 +76,18 @@
                                       </li>
                                       <li>
                                           <!-- Button trigger modal -->
-                                          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#previewStaff">
-                                              <i class="bi bi-eye"></i>
-                                              Preview
-                                          </button>
+                                          <a href="{{Route ('admin.showOneStaff', $staff->staff_id)}}" class="btn" data-bs-toggle="modal" data-bs-target="#previewStaff">
+                                            <i class="bi bi-eye"></i>
+                                            Preview
+                                          </a>
                                       </li>
-                                      <li><a class="btn" href="javaScript:void(0)">
-                                          <i class="bi bi-trash3"></i>
-                                          Delete
-                                      </a></li>
+                                      <li>
+                                        <form action="{{route ('admin.destroyStaff',$staff->staff_id)}}" method="POST" enctype="multipart/form-data">
+                                          @csrf
+                                          @method('DELETE')
+                                          <button type="submit" class="btn"><i class="bi bi-trash3"></i> Delete</button>
+                                        </form>
+                                    </li>
                                   </ul>
                               </div>
                             </td>
@@ -176,7 +179,7 @@
                   <div class="form-group row mb-2">
                       <div class="col-12">
                       <label for="image">Staff Image</label>
-                      <input type="file" name="image" value="{{old ('image')}}"  class="form-control @error('image') is-invalid @enderror" id="image">
+                      <input type="file" name="image"  class="form-control @error('image') is-invalid @enderror" id="image">
                       @error('image')
                         <p class="invalid-feedback">{{$message}}</p>
                       @enderror
@@ -195,9 +198,9 @@
     <div class="modal fade" id="editStaff">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form action="{{Route ('admin.updateStaff', $staff-> staff_id)}}" method="POST" enctype="multipart/form-data">
-            @method('PUT')
+          <form action="{{Route ('admin.updateStaff', $staff->staff_id)}}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="modal-header heading">
               <h2>Update Staff Details</h2>
               <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -206,14 +209,14 @@
               <div class="form-group row mb-2">
                 <div class="col-6">
                   <label for="name">Staff Name</label>
-                  <input type="text" name="name" value="{{old ('name',$staff->name)}}" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter Full Name">
+                  <input type="text" name="name" value="{{old ('name',$staff->staff_name)}}" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter Full Name">
                   @error('name')
                     <p class="invalid-feedback">{{$message}}</p>
                   @enderror
                 </div>
                 <div class="col-6">
                   <label for="designation">Designation</label>
-                  <input type="text" name="designation" value="{{old ('designation',$staff->designation)}}" class="form-control @error('designation') is-invalid @enderror " id="designation" placeholder="Enter Designation">
+                  <input type="text" name="designation" value="{{old ('designation',$staff->staff_designation)}}" class="form-control @error('designation') is-invalid @enderror " id="designation" placeholder="Enter Designation">
                   @error('designation')
                     <p class="invalid-feedback">{{$message}}</p>
                   @enderror
@@ -222,14 +225,14 @@
               <div class="form-group row mb-2">
                 <div class="col-6">
                   <label for="email">Email</label>
-                  <input type="email" name="email" value="{{old ('email',$staff->email)}}" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Enter Email Addres">
+                  <input type="email" name="email" value="{{old ('email',$staff->staff_email)}}" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Enter Email Addres">
                   @error('email')
                     <p class="invalid-feedback">{{$message}}</p>
                   @enderror
                 </div>
                 <div class="col-6">
                   <label for="mobile">Mobile</label>
-                  <input type="text" name="mobile" value="{{old ('mobile',$staff->mobile)}}" class="form-control @error('mobile') is-invalid @enderror" id="mobile" placeholder="Enter Mobile No.">
+                  <input type="text" name="mobile" value="{{old ('mobile',$staff->staff_mobile)}}" class="form-control @error('mobile') is-invalid @enderror" id="mobile" placeholder="Enter Mobile No.">
                   @error('mobile')
                     <p class="invalid-feedback">{{$message}}</p>
                   @enderror
@@ -238,14 +241,14 @@
               <div class="form-group row mb-2">
                 <div class="col-6">
                   <label for="address">Address</label>
-                  <input type="text" name="address" cvalue="{{old ('address',$staff->address)}}" class="form-control @error('address') is-invalid @enderror" id="address" placeholder="Enter Address">
+                  <input type="text" name="address" value="{{old ('address',$staff->staff_address)}}" class="form-control @error('address') is-invalid @enderror" id="address" placeholder="Enter Address">
                   @error('address')
                     <p class="invalid-feedback">{{$message}}</p>
                   @enderror
                 </div>
                 <div class="col-6">
                   <label for="joining">Joining Date</label>
-                  <input type="date" name="joining" value="{{old ('joining',$staff->joining)}}" id="joining" class="form-control @error('joining') is-invalid @enderror">
+                  <input type="date" name="joining" value="{{old ('joining',$staff->staff_joining_date)}}" id="joining" class="form-control @error('joining') is-invalid @enderror">
                   @error('joining')
                     <p class="invalid-feedback">{{$message}}</p>
                   @enderror
@@ -254,10 +257,12 @@
               <div class="form-group row mb-2">
                 <div class="col-12">
                   <label for="image">Staff Image</label>
-                  <input type="file" name="image" value="{{old ('image',$staff->image)}}"  class="form-control @error('image') is-invalid @enderror" id="image">
-                  @error('image')
-                    <p class="invalid-feedback">{{$message}}</p>
-                  @enderror
+                  <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" id="image">
+                  <div class="medium_thumbnail">
+                    @if ($staff->image != "")
+                      <img class="w-50 mt-4" src="{{ asset('admin/uploads/staff/'.$staff->image)}}" alt="">
+                    @endif
+                  </div>
                 </div>
               </div>
             </div>
@@ -279,30 +284,32 @@
           </div>
           <div class="modal-body">
             <div class="preview_content">
+              @if ($staff->image != "")
               <div class="modal_img">
-                <img src="./assets/img/Surya-Avatar.png" alt="Surya-Avatar">
+                <img src="{{ asset('admin/uploads/staff/'.$staff->image)}}" alt="Surya-Avatar">
               </div>
+              @endif
               <div class="modal_content">
                 <div class="d-flex mb-3">
-                  <strong>Name</strong><h3>Styam Singh</h2>
+                  <strong>Name</strong><h3>{{$staff->staff_name}}</h2>
                 </div>
                 <div class="d-flex mb-3">
-                  <strong>Designation</strong><h4>Assistant</h4>
+                  <strong>Designation</strong><h4>{{$staff->staff_designation}}</h4>
                 </div>
                 <div class="d-flex mb-3">
-                  <strong>Mobile</strong><a href="">8521489063</a>
-                </div>
-                
-                <div class="d-flex mb-3">
-                  <strong>Email</strong><a href="">Styam852@gmail.com</a>
+                  <strong>Mobile</strong><a href="">{{$staff->staff_mobile}}</a>
                 </div>
                 
                 <div class="d-flex mb-3">
-                  <strong>Address</strong><p>24/25 Road Kolkata</p>
+                  <strong>Email</strong><a href="">{{$staff->staff_email}}</a>
+                </div>
+                
+                <div class="d-flex mb-3">
+                  <strong>Address</strong><p>{{$staff->staff_address}}</p>
                 </div>
                
                 <div class="d-flex mb-3">
-                  <strong>Joining Date</strong><p>16/04/2024</p>
+                  <strong>Joining Date</strong><p>{{$staff->staff_joining_date}}</p>
                 </div>
                 
               </div>

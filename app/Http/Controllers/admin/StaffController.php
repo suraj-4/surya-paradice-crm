@@ -80,26 +80,28 @@ class StaffController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Staff $staff)
+    public function showOneStaff($staff_id)
     {
-        //
+        $staffs = Staff::findOrFail($staff_id);
+
+        return $staffs;
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    // public function edit($staff_id)
-    // {
-    //     $staff = Staff::findOrFail($staff_id);
-    //     return view ('staff.edit',['staff' => $staff]);
-    // }
+    public function edit($staff_id)
+    {
+        $staff = Staff::findOrFail($staff_id);
+        return view ('staff.edit',['staff' => $staff]);
+    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function updateStaff($id, Request $request)
+    public function updateStaff(Request $request, $staff_id)
     {
-        $staff = Staff::findOrFail($id);
+        $staff = Staff::findOrFail($staff_id);
 
         $rule = [
             'name' => 'required',
@@ -129,7 +131,7 @@ class StaffController extends Controller
         if ($request->hasFile('image')){
 
             // delete old image
-            File::delete(public_path('uploads/products'.$staff->image));
+            File::delete(public_path('admin/uploads/staff'.$staff->image));
 
             $image = $request->file('image');
             $ext = $image->getClientOriginalExtension();
@@ -149,8 +151,14 @@ class StaffController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Staff $staff)
+    public function destroyStaff($staff_id)
     {
-        //
+        $staff = Staff::findOrFail($staff_id);
+
+        // delete image from db
+        File::delete(public_path('admin/uploads/staff'.$staff->image));
+
+        $staff-> delete();
+        return redirect() -> back() -> with('Success', 'staff deleted successfully');
     }
 }

@@ -54,8 +54,10 @@ Route::controller(RoomController::class)->group(function(){
 
 Route::controller(StaffController::class)->group(function(){
     Route::post('admin/staff','addStaff')->name('admin.addStaff');
+    Route::get('admin/staff/{staff}','showOneStaff')->name('admin.showOneStaff');
     Route::get('admin/staff/{staff}/edit','edit')->name('admin.editStaff');
     Route::put('admin/staff/{staff}','updateStaff')->name('admin.updateStaff');
+    Route::delete('admin/staff/{staff}','destroyStaff')->name('admin.destroyStaff');
 });
 
 
