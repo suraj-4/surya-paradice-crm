@@ -16,7 +16,7 @@
         <div class="overview_area">
             <div class="top_wrapper">
               <div class="heading"><h2>All Rooms Details</h2></div>
-              <button type="button" class="btn larger-btn" data-bs-toggle="modal" data-bs-target="#addRoomDataModal">
+              <button type="button" class="btn larger-btn" data-bs-toggle="modal" data-bs-target="#addRoom">
                 <i class="bi bi-plus-lg"></i> Add New
               </button>
             </div>
@@ -50,13 +50,35 @@
                             <td>{{$room->room_name}}</td>
                             <td>{{$room->room_type}}</td>
                             <td>{{$room->room_number}}</td>
-                            <td><div class="proccess">{{$room->room_status}}</div></td>
+                            <!-- <td><div class="proccess">{{$room->room_status}}</div></td> -->
                             <td>
-                              <!-- Button trigger modal -->
-                              <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editRoomDataModal">
-                                <i class="bi bi-pencil-square"></i>
-                              </button>
-                              <a href="javaScript:void(0)" class="btn"><i class="bi bi-trash3"></i></a>                              
+                              @if ($room->room_status == 'pending')
+                                <div class="pending">{{$room->room_status}}</div>
+                              @elseif ($room->room_status == 'done')
+                               <div class="done">{{$room->room_status}}</div>
+                              @elseif ($room->room_status == 'booked')
+                               <div class="proccess">{{$room->room_status}}</div>
+                              @endif
+                            </td>
+                            <td>
+                              <div class="dropdown">
+                                  <button class="btn custom-outline dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                  </button>
+                                  <ul class="dropdown-menu tabel_dropdown">
+                                    <li>
+                                      <!-- Button trigger modal -->
+                                      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editRoom"><i class="bi bi-pencil-square"></i> Edit</button>
+                                    </li>
+                                    <li>
+                                      <!-- Button trigger modal -->
+                                      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#prevRoom"><i class="bi bi-eye"></i> Preview </button>
+                                    </li>
+                                    <li>
+                                      <a href="javaScript:void(0)" class="btn"><i class="bi bi-trash3"></i> Delete</a>  
+                                    </li>
+                                  </ul>
+                              </div>
                             </td>
                           </tr>
                           @endforeach
@@ -83,7 +105,7 @@
     <!-- main body area End -->
 
     <!-- Add New Data Modal -->
-    <div class="modal fade" id="addRoomDataModal" data-bs-backdrop="static">
+    <div class="modal fade" id="addRoom">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <form action="{{Route ('admin.rooms')}}" method="POST">
@@ -139,7 +161,7 @@
     </div>
 
     <!-- Edit Data Modal -->
-    <div class="modal fade" id="editRoomDataModal" data-bs-backdrop="static">
+    <div class="modal fade" id="editRoom">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header heading">

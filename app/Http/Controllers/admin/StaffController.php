@@ -17,7 +17,7 @@ class StaffController extends Controller
     {
         $staffs = Staff::all();
         return view('admin.pages.staff', [
-           'staff' => $staffs
+           'staffs' => $staffs
         ]);
     }
 
@@ -49,7 +49,7 @@ class StaffController extends Controller
         }
         $validater = Validator::make($request->all(), $rule);
         if ($validater -> fails()){
-            return redirect() -> back() -> withErrors($validater) -> withInput();
+            return redirect()->back()->withInput()->withErrors($validater) ;
         }
 
         $staff = new Staff();
@@ -73,36 +73,53 @@ class StaffController extends Controller
             $staff-> image = $imageName;
             $staff-> save();
         }
-        // return redirect() -> route('admin.staff') -> with('success', 'Staff Added Successfully');
-        return redirect() -> back() -> with('success', 'Staff Added Successfully');
+        return redirect()->back()->with('success', 'Staff Added Successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function showOneStaff($staff_id)
+    public function prevOneStaff($staff_id)
     {
-        $staffs = Staff::findOrFail($staff_id);
-
-        return $staffs;
+        $staff = Staff::where('staff_id', $staff_id)->first();
+        if ($staff) {
+            // Assuming your images are stored in the "storage/images" directory
+            $imagePath = asset('admin/uploads/staff/' . $staff->image); // Adjust the path as needed
+            return response()->json([
+                'message' => "Staff found successfully",
+                'success' => true,
+                'staff' => [
+                    'image_path' => $imagePath,
+                    'staff_name' => $staff->staff_name,
+                    'staff_desig' => $staff->staff_designation,
+                    'staff_mobile' => $staff->staff_mobile,
+                    'staff_email' => $staff->staff_email,
+                    'staff_address' => $staff->staff_address,
+                    'staff_joining' => $staff->staff_joining_date
+                ]
+            ]);
+        } else {
+            return response()->json([
+                'message' => "Staff not found",
+                'success' => false
+            ]);
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($staff_id)
+    public function editStaff($staff_id)
     {
-        $staff = Staff::findOrFail($staff_id);
-        return view ('staff.edit',['staff' => $staff]);
+        $staff = Staff::where('staff_id',$staff_id)->first();
+        return response()->json(['message'=> "Staff find successfully",'success'=>true, 'staff' => $staff]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function updateStaff(Request $request, $staff_id)
+    public function updateStaff(Request $request)
     {
-        $staff = Staff::findOrFail($staff_id);
-
         $rule = [
             'name' => 'required',
             'designation' => 'required',
@@ -117,22 +134,19 @@ class StaffController extends Controller
         }
         $validater = Validator::make($request->all(), $rule);
         if ($validater -> fails()){
-            return redirect() -> back() -> withErrors($validater) -> withInput();
+            return redirect()->back()->withInput()->withErrors($validater) ;
         }
-
+        $staff_id = $request->staff_id;
+        $staff = Staff::find($staff_id);
         $staff-> staff_name = $request->name;
         $staff-> staff_designation = $request->designation;
         $staff-> staff_email = $request->email;
         $staff-> staff_mobile = $request->mobile;
         $staff-> staff_address = $request->address;
         $staff-> staff_joining_date = $request->joining;
-        $staff-> save();
+        $staff-> update();
 
         if ($request->hasFile('image')){
-
-            // delete old image
-            File::delete(public_path('admin/uploads/staff'.$staff->image));
-
             $image = $request->file('image');
             $ext = $image->getClientOriginalExtension();
             $imageName = time() . '.' . $ext; // Unique image name
@@ -142,11 +156,11 @@ class StaffController extends Controller
 
             // Save image name in db
             $staff-> image = $imageName;
-            $staff-> save();
+            $staff-> update();
         }
-
-        return redirect() -> back() -> withErrors($validater) -> withInput();
+        return redirect()->back()->with('success', 'Staff Updated Successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -159,6 +173,6 @@ class StaffController extends Controller
         File::delete(public_path('admin/uploads/staff'.$staff->image));
 
         $staff-> delete();
-        return redirect() -> back() -> with('Success', 'staff deleted successfully');
+        return redirect()->back()->with('Success', 'staff deleted successfully');
     }
 }

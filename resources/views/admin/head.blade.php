@@ -6,6 +6,8 @@
         </div>
     </div>
     <div class="right_area">
+        <div class="toggle_wrap"><div class="toggle"></div></div>
+        
         <div class="dropdown">
             <button class="btn custom-outline dropdown-toggle" type="button" data-bs-toggle="dropdown">
                 <i class="bi bi-bell"></i>
@@ -34,7 +36,7 @@
             </div>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="javaScript:void(0)">Hello, {{Auth::guard('admin')->user()->name}}</a></li>
-                <li><a class="dropdown-item" href="javaScript:void(0)">Settings</a></li>
+                <li><a class="dropdown-item" href="{{Route ('settings')}}">Settings</a></li>
                 <li><a class="dropdown-item" href="{{Route ('admin.logout')}}">Log Out</a></li>
             </ul>
         </div>

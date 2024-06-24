@@ -38,7 +38,7 @@
             </li>
                             
             </ul>
-            <div class="toggle_wrap"><div class="toggle"></div></div>
+            <!-- <div class="toggle_wrap"><div class="toggle"></div></div> -->
         </div>
     </nav>
 </div>

@@ -27,4 +27,5 @@ class DashboardController extends Controller
     public function showReports(){
         return view('admin.pages.reports');
     }
+
 }

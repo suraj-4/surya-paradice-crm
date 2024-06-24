@@ -27,7 +27,7 @@ class RoomController extends Controller
 
         $Validate = Validator::make($request->all(), $rules);
         if ($Validate -> fails()){
-            return redirect() -> back() -> withErrors($Validate) -> withInput();
+            return redirect()->back()->withInput()->withErrors($Validate);
         }
 
         $rooms = new Room();
@@ -36,7 +36,7 @@ class RoomController extends Controller
         $rooms->room_number = $request->room_number;
         $rooms->room_status = $request->room_status;
         $rooms->save();
-        return redirect() -> route('admin.rooms') -> with('success', 'Room Added Successfully');
+        return redirect()->route('admin.rooms')->with('success', 'Room Added Successfully');
 
     }
 

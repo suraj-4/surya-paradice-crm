@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\RoomController;
+use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\admin\StaffController;
 use App\Http\Controllers\AuthenticationController;
 use Illuminate\Support\Facades\Route;
@@ -43,20 +44,30 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('booking',[DashboardController::class, 'showBooking'])->name('booking');
         Route::get('staff',[StaffController::class, 'ahowAllStaff'])->name('staff');
         Route::get('reports',[DashboardController::class, 'showReports'])->name('reports');
+        Route::get('settings',[SettingsController::class, 'showSettings'])->name('settings');
 
         Route::get('logout',[LoginController::class, 'logout'])->name('admin.logout');
     });
 });
 
+// Rooms Route
+Route::controller(SettingsController::class)->group(function(){
+    Route::get('admin/user/edit/{user}','editUser')->name('admin.editUser');
+    Route::put('admin/user/update/{user}','updateUser')->name('admin.updateUser');
+    Route::delete('admin/user/detete/{user}','destroyUser')->name('admin.destroyUser');
+});
+
+// Rooms Route
 Route::controller(RoomController::class)->group(function(){
     Route::post('admin/rooms','addRoom')->name('admin.rooms');
 });
 
+// Staff Routes
 Route::controller(StaffController::class)->group(function(){
     Route::post('admin/staff','addStaff')->name('admin.addStaff');
-    Route::get('admin/staff/{staff}','showOneStaff')->name('admin.showOneStaff');
-    Route::get('admin/staff/{staff}/edit','edit')->name('admin.editStaff');
-    Route::put('admin/staff/{staff}','updateStaff')->name('admin.updateStaff');
+    Route::get('admin/staff/edit/{staff_id}','editStaff')->name('admin.editStaff');
+    Route::get('admin/staff/preview/{staff_id}','prevOneStaff')->name('admin.prevOneStaff');
+    Route::put('admin/staff/update/','updateStaff')->name('admin.updateStaff');
     Route::delete('admin/staff/{staff}','destroyStaff')->name('admin.destroyStaff');
 });
 

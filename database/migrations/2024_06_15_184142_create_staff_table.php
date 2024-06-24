@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->id('staff_id'); // This is the auto_increment primary key
+            $table->string('image')->nullable();
             $table->string('staff_name');
             $table->string('staff_designation');
-            $table->string('staff_mobile',20)->change();
-            $table->string('staff_email');
+            $table->string('staff_mobile');
+            $table->string('staff_email')->unique();
             $table->string('staff_address');
             $table->date('staff_joining_date');
-            $table->string('image')->nullable();
-            // $table->timestamps();
+            $table->timestamps();
         });
     }
 
