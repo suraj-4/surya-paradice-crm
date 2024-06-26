@@ -113,7 +113,7 @@
     <!-- main body area End -->
 
     <!-- Add Staff Data Modal -->
-    <div class="modal fade" id="addStaff">
+    <div class="modal fade" id="addStaff" data-bs-backdrop="static">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <form action="{{route ('admin.addStaff')}}" method="POST" enctype="multipart/form-data">
@@ -190,7 +190,7 @@
     </div>
 
     <!-- Update Staff Data Modal -->
-    <div class="modal fade" id="editStaff">
+    <div class="modal fade" id="editStaff" data-bs-backdrop="static">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <form action="{{Route ('admin.updateStaff')}}" id="updateStaffForm" method="POST" enctype="multipart/form-data">
@@ -267,7 +267,7 @@
     </div>
 
     <!-- Preview Staff Data Modal -->
-    <div class="modal fade" id="prevOneStaff">
+    <div class="modal fade" id="prevOneStaff" data-bs-backdrop="static">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
           <div class="modal-header heading">

@@ -615,5 +615,8 @@ header{
 }
 .nav-tabs .nav-link.active{
 	color: var(--textColorPrimary);
-	background-color: var(--bgColorSecondary);
+	background-color: var(--bgColorPrimary);
+}
+rte-resizecorner,rte-powerby a{
+	display: none!important;
 }
