@@ -617,6 +617,32 @@ header{
 	color: var(--textColorPrimary);
 	background-color: var(--bgColorPrimary);
 }
-rte-resizecorner,rte-powerby a{
+rte-resizecorner{
 	display: none!important;
+}
+.upload-label {
+	display: block;
+	cursor: pointer;
+	border: 2px dashed #ccc;
+	padding: 0.625rem;
+	height: 15.625rem;
+	border-radius: 0.625rem;
+	overflow: hidden;
+	text-align: center;
+	transition: background-color 0.3s, border-color 0.3s;
+}
+
+.upload-label:hover {
+	background-color: #e0e0e0;
+	border-color: #aaa;
+}
+#preview {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 0.625rem;
+	margin-bottom: 1.25rem;
+}
+#preview.hidden {
+    display: none;
 }

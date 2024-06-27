@@ -17,7 +17,7 @@
             <div class="top_wrapper">
               <div class="heading"><h2>All Rooms Details</h2></div>
               <button type="button" class="btn larger-btn" data-bs-toggle="modal" data-bs-target="#addRoom">
-                <i class="bi bi-plus-lg"></i> Add New
+                Add New <i class="bi bi-plus-lg"></i>
               </button>
             </div>
             <div class="row">
@@ -35,7 +35,7 @@
                         <tr>
                           <!-- <th>No</th> -->
                           <th>Room Number</th>
-                          <th>Room Name</th>
+                          <th>Hotel Name</th>
                           <th>Room Type</th>
                           <th>Room Status</th>
                           <th>Action</th>
@@ -75,7 +75,7 @@
                         <tr>
                           <!-- <th>No</th> -->
                           <th>Room Number</th>
-                          <th>Room Name</th>
+                          <th>Hotel Name</th>
                           <th>Room Type</th>
                           <th>Room Status</th>
                           <th>Action</th>
@@ -104,15 +104,27 @@
               <div class="form-group row">
                 <div class="col-9">
                   <div class="mb-4">
-                    <label for="room_name">Room Name</label>
-                    <input type="text" name="room_name" id="room_name" class="form-control" placeholder="Enter Room Name">
+                    <label for="hotel_name">Hotel Name</label>
+                    <input type="text" name="hotel_name" id="hotel_name" class="form-control" placeholder="Enter Hotel Name">
                   </div>
                   <div class="mb-4">
                     <label for="room_desc">Room Description</label>
-                    <div id="addRichTextEditor" name="room_desc" class="form-control" style="width: 100%;"></div>
+                    <input id="addRichTextEditor" name="room_desc" class="form-control" style="width: 100%;">
                   </div>
+                  <div class="mb-4">
+                    <label for="room_excerpt">Excerpt</label>
+                    <textarea name="room_excerpt" id="room_excerpt" class="form-control" placeholder="Enter Room Excerpt"></textarea>
+                  </div>
+
                 </div>
                 <div class="col-3">
+                  <div class="mb-4">
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                    <label for="fileInput" class="upload-label">
+                        <img id="preview" alt="Click to upload an image" class="hidden">
+                        <p>Click to upload an image</p>
+                    </label>
+                  </div>
                   <div class="mb-4">
                     <label for="room_no">Room Number</label>
                     <input type="text" name="room_no" id="room_no" class="form-control" placeholder="Enter Room no.">  
@@ -154,8 +166,12 @@
                     </select>
                   </div>
                   <div class="mb-4">
-                    <label for="room_excerpt">Excerpt</label>
-                    <textarea name="room_excerpt" id="room_excerpt" class="form-control" placeholder="Enter Room Excerpt"></textarea>
+                    <label for="location">Location</label>
+                    <textarea name="location" id="location" class="form-control" placeholder="Enter Location"></textarea>
+                  </div>
+                  <div class="mb-4">
+                    <label for="map">Map</label>
+                    <input type="text" name="map" id="map" class="form-control" placeholder="Enter Map Link">
                   </div>
 
                 </div>
@@ -163,7 +179,7 @@
                
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn larger-btn">Add New</button>
+              <button type="submit" class="btn larger-btn">Add New <i class="bi bi-plus-lg"></i></button>
             </div>
           </form>
         </div>
@@ -184,15 +200,27 @@
               <div class="form-group row">
                 <div class="col-9">
                   <div class="mb-4">
-                    <label for="room_name">Room Name</label>
-                    <input type="text" name="room_name" id="room_name" class="form-control" placeholder="Enter Room Name">
+                    <label for="hotel_name">Hotel Name</label>
+                    <input type="text" name="hotel_name" id="hotel_name" class="form-control" placeholder="Enter Hotel Name">
                   </div>
                   <div class="mb-4">
                     <label for="room_desc">Room Description</label>
-                    <div id="editRichTextEditor" name="room_desc" class="form-control" style="width: 100%;"></div>
+                    <div id="addRichTextEditor" name="room_desc" class="form-control" style="width: 100%;"></div>
                   </div>
+                  <div class="mb-4">
+                    <label for="room_excerpt">Excerpt</label>
+                    <textarea name="room_excerpt" id="room_excerpt" class="form-control" placeholder="Enter Room Excerpt"></textarea>
+                  </div>
+
                 </div>
                 <div class="col-3">
+                  <div class="mb-4">
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                    <label for="fileInput" class="upload-label">
+                      <img id="preview" alt="Click to upload an image" class="hidden">
+                      <p>Click to upload an image</p>
+                    </label>
+                  </div>
                   <div class="mb-4">
                     <label for="room_no">Room Number</label>
                     <input type="text" name="room_no" id="room_no" class="form-control" placeholder="Enter Room no.">  
@@ -211,9 +239,8 @@
                       <option value="pending">Pending</option>
                       <option value="checkedOut">Checked-Out</option>
                       <option value="outOfService">Out of Service</option>
-                    </select>                  
+                    </select>                
                   </div>
-
                   <div class="mb-4">
                     <label for="room_type">Room Type</label>
                     <select name="room_type" id="room_type" class="form-select">
@@ -235,15 +262,16 @@
                     </select>
                   </div>
                   <div class="mb-4">
-                    <label for="room_excerpt">Excerpt</label>
-                    <textarea name="room_excerpt" id="room_excerpt" class="form-control" placeholder="Enter Room Excerpt"></textarea>
+                    <label for="location">Location</label>
+                    <textarea name="location" id="location" class="form-control" placeholder="Enter Location"></textarea>
                   </div>
+
                 </div>
-              </div>   
+              </div>  
                
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn larger-btn">Add New</button>
+              <button type="submit" class="btn larger-btn">Update</button>
             </div>
           </form>
         </div>
