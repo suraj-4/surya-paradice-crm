@@ -19,10 +19,12 @@ class RoomController extends Controller
     //This method will Add the Rooms in Table.
     public function addRoom(Request $request ){
         $rules = [
-            'room_name' => 'required',
-            'room_type' => 'required',
-            'room_number' => 'required|numeric',
-            'room_status' => 'required',
+            'hotelName' => 'required',
+            'roomType' => 'required',
+            'roomNo' => 'required|numeric',
+            'roomRent' => 'required|numeric',
+            'roomStatus' => 'required',
+            'roomExcerpt' => 'required'
         ];
 
         $Validate = Validator::make($request->all(), $rules);
@@ -31,13 +33,19 @@ class RoomController extends Controller
         }
 
         $rooms = new Room();
-        $rooms->room_name = $request->room_name;
-        $rooms->room_type = $request->room_type;
-        $rooms->room_number = $request->room_number;
-        $rooms->room_status = $request->room_status;
+        $rooms->room_number = $request->roomNo;
+        $rooms->hotel_name = $request->hotelName;
+        $rooms->room_type = $request->roomType;
+        $rooms->room_status = $request->roomStatus;
+        $rooms->room_price = $request->roomRent;
+        $rooms->room_excerpt = $request->roomExcerpt;
+        $rooms->hotel_location = $request->location;
+        $rooms->hotel_map = $request->map;
+        $rooms->room_desc = $request->roomDesc;
         $rooms->save();
         return redirect()->route('admin.rooms')->with('success', 'Room Added Successfully');
 
     }
+
 
 }

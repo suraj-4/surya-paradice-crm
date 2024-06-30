@@ -13,10 +13,16 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id('room_id'); // This is the auto_increment primary key
-            $table->string('room_name');
-            $table->string('room_type');
             $table->integer('room_number'); // This is a regular integer column
-            $table->enum('room_status', ['booked', 'pending', 'done'])->default('pending');
+            $table->string('hotel_name');
+            $table->string('hotel_image');
+            $table->enum('room_type', ['single','double','twin','triple','quad','family','suite','studio','deluxe','executive','luxury','presidentialSuite','accessible','penthouse'])->default('single');
+            $table->string('room_price');
+            $table->enum('room_status', ['available', 'reserved', 'occupied','pending','checkedOut','outOfService'])->default('available');
+            $table->string('room_excerpt')->nullable();
+            $table->string('hotel_location')->nullable();
+            $table->string('hotel_map')->nullable();
+            $table->string('room_desc')->nullable();
             $table->timestamps();
         });
     }
