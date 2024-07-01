@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin;
 use App\Models\Room;
 use App\Http\Controllers\Controller;
+// use Faker\Core\File;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -32,20 +34,41 @@ class RoomController extends Controller
             return redirect()->back()->withInput()->withErrors($Validate);
         }
 
-        $rooms = new Room();
-        $rooms->room_number = $request->roomNo;
-        $rooms->hotel_name = $request->hotelName;
-        $rooms->room_type = $request->roomType;
-        $rooms->room_status = $request->roomStatus;
-        $rooms->room_price = $request->roomRent;
-        $rooms->room_excerpt = $request->roomExcerpt;
-        $rooms->hotel_location = $request->location;
-        $rooms->hotel_map = $request->map;
-        $rooms->room_desc = $request->roomDesc;
-        $rooms->save();
-        return redirect()->route('admin.rooms')->with('success', 'Room Added Successfully');
+        $imageName = NULL;
+        if (!empty ($request->hotelImg)){
+            $imageObject = $request->hotelImg;
+            $newImageName = time().'.'.$imageObject->getClientOriginalExtension();
+            $imageObject->move(public_path('admin/uploads/rooms'), $newImageName);
+            $imageName = $newImageName;
+        }
+
+        Room::create([
+            'room_number' => $request->roomNo,
+            'hotel_name' => $request->hotelName,
+            'hotel_image' => $imageName,
+            'room_type' => $request->roomType,
+            'room_status' => $request->roomStatus,
+            'room_price' => $request->roomRent,
+            'room_excerpt' => $request->roomExcerpt,
+            'hotel_location' => $request->location,
+            'hotel_map' => $request->map,
+            'room_desc' => $request->roomDesc,
+        ]);
+
+        return redirect()->back()->with('Success', 'Room Added Successfully');
 
     }
 
+    //This method will Delete the Rooms in Table.
+    public function destroyRoom(string $room_id){
+        $room = Room::find($room_id);
+
+        // delete image from db
+        // File::delete(public_path('admin/uploads/rooms'.$rooms->newImageName));
+
+        // Delete the room record
+        $room->delete();
+        return redirect()->back()->with('Success', 'Rooms Deleted Successfully');
+    }
 
 }

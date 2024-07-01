@@ -112,12 +112,10 @@ class StaffController extends Controller
     public function editStaff($staff_id)
     {
         $staff = Staff::where('staff_id',$staff_id)->first();
-        return response()->json(['message'=> "Staff find successfully",'success'=>true, 'staff' => $staff]);
+        return response()->json(['message'=> "Staff find Successfully",'Success'=>true, 'staff' => $staff]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    /* Update the specified resource in storage. */
     public function updateStaff(Request $request)
     {
         $rule = [
@@ -162,11 +160,8 @@ class StaffController extends Controller
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroyStaff($staff_id)
-    {
+    /* Remove the specified resource from storage. */
+    public function destroyStaff($staff_id) {
         $staff = Staff::findOrFail($staff_id);
 
         // delete image from db

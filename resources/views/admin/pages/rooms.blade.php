@@ -33,7 +33,7 @@
                   <table class="table-striped-columns display customerList" style="width:100%">
                       <thead class="custom-bg">
                         <tr>
-                          <!-- <th>No</th> -->
+                          <th>No</th>
                           <th>Room Number</th>
                           <th>Hotel Name</th>
                           <th>Room Type</th>
@@ -45,6 +45,7 @@
                       @if ($rooms ->isNotEmpty())
                         @foreach ($rooms as $room)
                         <tr>
+                          <td>{{$room->room_id}}</td>
                           <td>{{$room->room_number}}</td>
                           <td>{{$room->hotel_name}}</td>
                           <td>{{$room->room_type}}</td>
@@ -64,7 +65,12 @@
                                   <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#prevRoom"><i class="bi bi-eye"></i> Preview </button>
                                 </li>
                                 <li>
-                                  <a href="javaScript:void(0)" class="btn"><i class="bi bi-trash3"></i> Delete</a>  
+                                  <!-- <a href="javaScript:void(0)" class="btn"><i class="bi bi-trash3"></i> Delete</a>   -->
+                                   <form action="{{Route ('admin.destroyRoom',$room->room_id)}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn"><i class="bi bi-trash3"></i> Delete</button>
+                                   </form>
                                 </li>
                               </ul>
                             </div>
@@ -75,7 +81,7 @@
                       </tbody>
                       <tfoot class="custom-bg">
                         <tr>
-                          <!-- <th>No</th> -->
+                          <th>No</th>
                           <th>Room Number</th>
                           <th>Hotel Name</th>
                           <th>Room Type</th>
@@ -96,7 +102,7 @@
     <div class="modal fade" id="addRoom" data-bs-backdrop="static">
       <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
-          <form action="{{Route ('admin.rooms')}}" method="POST" enctype="multipart/form-data">
+          <form action="{{Route ('admin.addRooms')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="modal-header heading">
               <h2>Add New Rooms Details</h2>

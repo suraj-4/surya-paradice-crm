@@ -50,7 +50,7 @@ Route::group(['prefix' => 'admin'],function(){
     });
 });
 
-// Rooms Route
+// User Route
 Route::controller(SettingsController::class)->group(function(){
     Route::get('admin/user/edit/{user}','editUser')->name('admin.editUser');
     Route::put('admin/user/update/{user}','updateUser')->name('admin.updateUser');
@@ -59,7 +59,8 @@ Route::controller(SettingsController::class)->group(function(){
 
 // Rooms Route
 Route::controller(RoomController::class)->group(function(){
-    Route::post('admin/rooms','addRoom')->name('admin.rooms');
+    Route::post('admin/rooms','addRoom')->name('admin.addRooms');
+    Route::delete('admin/rooms/delete/{room_id}','destroyRoom')->name('admin.destroyRoom');
 });
 
 // Staff Routes
