@@ -646,3 +646,18 @@ rte-resizecorner{
 #preview.hidden {
     display: none;
 }
+.prev_wrapper h4{
+	font-weight: 600;
+	margin-top: 1rem;
+	margin-bottom: 0.3rem;
+}
+.field{
+	padding: 0.5rem;
+	border: var(--border);
+	border-radius: var(--border-radius);
+}
+.thumbnail{
+	margin-top: 2rem;
+	overflow: hidden;
+	border-radius: var(--border-radius);
+}

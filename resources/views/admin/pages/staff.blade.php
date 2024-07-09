@@ -316,6 +316,7 @@
 </div>
 @include('admin.footer')
 
+<!-- Edit the Staff -->
 <script>
   function editStaff(staffId) {
     $('#editStaff').modal('show');
@@ -344,28 +345,29 @@
   }
 </script>
 
+<!-- Preview the Staff -->
 <script>
   function prevStaff(staffId) {
     $('#prevOneStaff').modal('show');
 
     $.ajax({
-        url : "{{ route('admin.prevOneStaff', '') }}/"+staffId,
-        type : 'GET',
-        dataType : 'json',
-        success : function(result){
-          // console.log(result);
-          const data = result.staff;
-          // console.log(data);
-          // $('#prev_name')(data.staff_id);
-          $('#prev_img').attr('src', data.image_path);
-          $('#prev_name').text(data.staff_name);
-          $('#prev_desig').text(data.staff_desig);
-          $('#prev_mobile').text(data.staff_mobile);
-          $('#prev_email').text(data.staff_email);
-          $('#prev_address').text(data.staff_address);
-          $('#prev_join_date').text(data.staff_joining);
-            // console.log("===== " + result + " =====");
-        }
+      url : "{{ route('admin.prevOneStaff', '') }}/"+staffId,
+      type : 'GET',
+      dataType : 'json',
+      success : function(result){
+        // console.log(result);
+        const data = result.staff;
+        // console.log(data);
+        // $('#prev_name')(data.staff_id);
+        $('#prev_img').attr('src', data.image_path);
+        $('#prev_name').text(data.staff_name);
+        $('#prev_desig').text(data.staff_desig);
+        $('#prev_mobile').text(data.staff_mobile);
+        $('#prev_email').text(data.staff_email);
+        $('#prev_address').text(data.staff_address);
+        $('#prev_join_date').text(data.staff_joining);
+          // console.log("===== " + result + " =====");
+      }
 
     });
   }

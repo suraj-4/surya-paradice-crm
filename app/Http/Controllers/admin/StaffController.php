@@ -165,7 +165,8 @@ class StaffController extends Controller
         $staff = Staff::findOrFail($staff_id);
 
         // delete image from db
-        File::delete(public_path('admin/uploads/staff'.$staff->image));
+        File::delete(public_path('admin/uploads/staff'.$staff->imageName));
+
 
         $staff-> delete();
         return redirect()->back()->with('Success', 'staff deleted successfully');

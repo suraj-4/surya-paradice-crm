@@ -59,6 +59,34 @@ class RoomController extends Controller
 
     }
 
+    //This method will Preview the Rooms in Table.
+    public function prevOneRoom($room_id){
+        $room = Room::find($room_id);
+
+        if ($room) {
+            // Assuming your images are stored in the "storage/images" directory
+            $imagePath = asset('admin/uploads/rooms/' . $room->hotel_image); // Adjust the path as needed
+            return response()->json([
+                'message' => "Room found successfully",
+                'success' => true,
+                'room' => [
+                    'roomNo' => $room->room_number,
+                    'hotelName' => $room->hotel_name,
+                    'imagePath' => $imagePath,
+                    'roomType' => $room->room_type,
+                    'roomStatus' => $room->room_status,
+                    'roomPrice' => $room->room_price,
+                    'roomExcerpt' => $room->room_excerpt,
+                    'hotelLocation' => $room->hotel_location,
+                    'hotelMap' => $room->hotel_map,
+                    'roomDesc' => $room->room_desc,
+
+                ]
+            ]);
+        } 
+        
+    }
+
     //This method will Delete the Rooms in Table.
     public function destroyRoom(string $room_id){
         $room = Room::find($room_id);
