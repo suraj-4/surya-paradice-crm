@@ -58,7 +58,7 @@
                         <ul class="dropdown-menu tabel_dropdown">
                           <li>
                             <!-- Edit Button trigger modal -->
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editRoom"><i class="bi bi-pencil-square"></i> Edit</button>
+                            <button type="button" class="btn" onclick="editRoom('{{$room->room_id}}')"><i class="bi bi-pencil-square"></i> Edit</button>
                           </li>
                           <li>
                             <!-- Preview Button trigger modal -->
@@ -106,7 +106,6 @@
             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-
             <div class="form-group row">
               <div class="col-9">
                 <div class="mb-4">
@@ -130,13 +129,19 @@
                     <p class="invalid-feedback">{{ $message }}</p>
                   @enderror
                 </div>
-
+                <div class="mb-4">
+                  <label for="map">Map</label>
+                  <input type="text" name="map" id="map" class="form-control @error('map') is-invalid @enderror" placeholder="Enter Map Link">
+                  @error('map')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                  @enderror
+                </div>
               </div>
               <div class="col-3">
                 <div class="mb-4">
-                  <input type="file" name="hotelImg" id="fileInput" class="form-control @error('hotelImg') is-invalid @enderror" accept="image/*" hidden>
-                  <label for="fileInput" class="upload-label">
-                    <img id="preview" alt="Click to upload an image" class="hidden">
+                  <input type="file" name="hotelImg" id="uploadImg" class="form-control @error('hotelImg') is-invalid @enderror" accept="image/*" hidden>
+                  <label for="uploadImg" class="upload-label">
+                    <img id="uploadPreview" alt="Click to upload an image" class="hidden">
                     <p>Click to upload an image</p>
                   </label>
                   @error('hotelImg')
@@ -202,17 +207,8 @@
                     <p class="invalid-feedback">{{ $message }}</p>
                   @enderror
                 </div>
-                <div class="mb-4">
-                  <label for="map">Map</label>
-                  <input type="text" name="map" id="map" class="form-control @error('map') is-invalid @enderror" placeholder="Enter Map Link">
-                  @error('map')
-                    <p class="invalid-feedback">{{ $message }}</p>
-                  @enderror
-                </div>
-
               </div>
             </div>   
-              
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn larger-btn">Add New <i class="bi bi-plus-lg"></i></button>
@@ -226,48 +222,54 @@
   <div class="modal fade" id="editRoom" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
-        <form>
+        <form action="{{Route ('admin.updateRoom')}}" id="updateRoomForm" method="POST" enctype="multipart/form-data">
+          @csrf
+          @method('PUT')
+          <input type="hidden" name="room_id" id="edit_id">
           <div class="modal-header heading">
             <h2>Edit Rooms Details</h2>
             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-
             <div class="form-group row">
               <div class="col-9">
                 <div class="mb-4">
-                  <label for="hotel_name">Hotel Name</label>
-                  <input type="text" name="hotel_name" id="hotel_name" class="form-control" placeholder="Enter Hotel Name">
+                  <label for="edit_hotelName">Hotel Name</label>
+                  <input type="text" name="hotelName" id="edit_hotelName" class="form-control" placeholder="Enter Hotel Name">
                 </div>
                 <div class="mb-4">
                   <label for="room_desc">Room Description</label>
-                  <div id="editRichTextEditor" name="room_desc" class="form-control" style="width: 100%;"></div>
+                  <div id="editRichTextEditor" name="roomDesc" class="form-control" style="width: 100%;"></div>
                 </div>
                 <div class="mb-4">
-                  <label for="room_excerpt">Excerpt</label>
-                  <textarea name="room_excerpt" id="room_excerpt" class="form-control" placeholder="Enter Room Excerpt"></textarea>
+                  <label for="edit_roomExcerpt">Excerpt</label>
+                  <textarea name="roomExcerpt" id="edit_roomExcerpt" class="form-control" placeholder="Enter Room Excerpt"></textarea>
                 </div>
-
+                <div class="mb-4">
+                  <label for="edit_hotelMap">Map Link</label>
+                  <input name="map" id="edit_hotelMap" class="form-control" placeholder="Enter Map Link">
+                </div>
               </div>
               <div class="col-3">
                 <div class="mb-4">
-                  <input type="file" id="fileInput" accept="image/*" hidden>
-                  <label for="fileInput" class="upload-label">
-                    <img id="preview" alt="Click to upload an image" class="hidden">
+                  <input type="file" name="hotelImg" id="changeImg" accept="image/*" hidden>
+                  <label for="changeImg" class="upload-label">
+                    <img id="uploadPreview" class="hidden">
                     <p>Click to upload an image</p>
                   </label>
+                  <!-- <img id="edit_hotelImg" class="hidden"> -->
                 </div>
                 <div class="mb-4">
-                  <label for="room_no">Room Number</label>
-                  <input type="text" name="room_no" id="room_no" class="form-control" placeholder="Enter Room no.">  
+                  <label for="edit_roomNo">Room Number</label>
+                  <input type="text" name="roomNo" id="edit_roomNo" class="form-control" placeholder="Enter Room no.">  
                 </div>
                 <div class="mb-4">
-                  <label for="room_price">Room Price</label>
-                  <input type="text" name="room_price" id="room_price" class="form-control" placeholder="Enter Room Price">  
+                  <label for="edit_roomPrice">Room Price</label>
+                  <input type="text" name="roomRent" id="edit_roomPrice" class="form-control" placeholder="Enter Room Price">  
                 </div>
                 <div class="mb-4">
-                  <label for="room_status">Room Status</label>
-                  <select name="room_status" id="room_status" class="form-select">
+                  <label for="edit_roomStatus">Room Status</label>
+                  <select name="roomStatus" id="edit_roomStatus" class="form-select">
                     <option selected>Select the Status</option>
                     <option value="available">Available</option>
                     <option value="reserved">Reserved</option>
@@ -278,8 +280,8 @@
                   </select>                
                 </div>
                 <div class="mb-4">
-                  <label for="room_type">Room Type</label>
-                  <select name="room_type" id="room_type" class="form-select">
+                  <label for="edit_roomType">Room Type</label>
+                  <select name="roomType" id="edit_roomType" class="form-select">
                     <option selected>Select Room Type</option>
                     <option value="single">Single Room</option>
                     <option value="double">Double Room</option>
@@ -292,19 +294,17 @@
                     <option value="deluxe">Deluxe Room</option>
                     <option value="executive">Executive Room</option>
                     <option value="luxury">Luxury Room</option>
-                    <option value="presidential_suite">Presidential Suite</option>
+                    <option value="presidentialSuite">Presidential Suite</option>
                     <option value="accessible">Accessible Room</option>
                     <option value="penthouse">Penthouse</option>
                   </select>
                 </div>
                 <div class="mb-4">
-                  <label for="location">Location</label>
-                  <textarea name="location" id="location" class="form-control" placeholder="Enter Location"></textarea>
+                  <label for="edit_hotelLoc">Location</label>
+                  <textarea name="location" id="edit_hotelLoc" class="form-control" placeholder="Enter Location"></textarea>
                 </div>
-
               </div>
             </div>  
-              
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn larger-btn">Update</button>
@@ -319,7 +319,7 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
         <div class="modal-header heading">
-          <h2>Edit Rooms Details</h2>
+          <h2>Preview Rooms Details</h2>
           <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body p-4">
@@ -345,7 +345,7 @@
                 <h4>Location</h4>
                 <div id="prev_hotelLoc" class="field"></div>
                 <h4>Map</h4>
-                <div id="prev_hotelMap" class="field"></div>
+                <div class="field"><a href="" id="prev_hotelMap" target="_blank">Map Link</a></div>
                 <div class="thumbnail"><img alt="" id="prev_hotelImg"></div>
               </div>
             </div>
@@ -372,8 +372,86 @@
   var editEditor = new RichTextEditor("#editRichTextEditor", roomEditor);
 </script>
 
-<!-- Edit Script -->
+<!-- image upload Script -->
+<script>
+  // Image Upload
+  document.getElementById('uploadImg').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const preview = document.getElementById('uploadPreview');
+        preview.src = e.target.result;
+        preview.classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+  });
 
+  // Change Image
+  document.getElementById('changeImg').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const preview = document.getElementById('ChangePreview');
+        preview.src = e.target.result;
+        preview.classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // document.getElementById('fileInput').addEventListener('change', function(event) {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onload = function(e) {
+  //       const preview = document.getElementById('preview');
+  //       preview.src = e.target.result;
+  //       preview.classList.remove('hidden');
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // });
+</script>
+
+<!-- Edit or Upadte Script -->
+<script>
+  function editRoom (roomId) {
+  $('#editRoom').modal('show');
+
+    // Fetch Room Details
+    $.ajax({
+      url: "{{Route ('admin.editRoom', '')}}/"+roomId,
+      method: "GET",
+      dataType: "json",
+      success: function(response) {
+        const data = response.room;
+        // console.log(data.hotel_name);
+        $('#edit_id').val(data.room_id);
+        $('#edit_hotelName').val(data.hotel_name);
+        $('#edit_roomExcerpt').val(data.room_excerpt);
+        $('#edit_roomNo').val(data.room_number);
+        $('#edit_roomPrice').val(data.room_price);
+        $('#edit_roomStatus').val(data.room_status);
+        $('#edit_roomType').val(data.room_type);
+        $('#edit_hotelLoc').val(data.hotel_location);
+        $('#edit_hotelMap').val(data.hotel_map);
+        $('#changeImg').attr('src', data.imageName);
+        $('#editRichTextEditor').val(data.room_desc);
+        // editEditor.setValue(data.room_desc);
+
+        console.log(data.imageName);
+
+        //   console.log(response);
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+  }
+</script>
 
 <!-- Preview Script -->
 <script>
@@ -397,7 +475,8 @@
       $('#prev_roomPrice').text(data.roomPrice);
       $('#prev_roomExcerpt').text(data.roomExcerpt);
       $('#prev_hotelLoc').text(data.hotelLocation);
-      $('#prev_hotelMap').text(data.hotelMap);
+      // $('#prev_hotelMap').text(data.hotelMap);
+      $('#prev_hotelMap').attr('href', data.hotelMap);
       $('#prev_roomDesc').text(data.roomDesc);
     },
     error: function(error) {

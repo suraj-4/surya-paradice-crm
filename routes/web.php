@@ -60,6 +60,8 @@ Route::controller(SettingsController::class)->group(function(){
 // Rooms Route
 Route::controller(RoomController::class)->group(function(){
     Route::post('admin/rooms','addRoom')->name('admin.addRooms');
+    Route::get('admin/rooms/edit/{room_id}','editRoom')->name('admin.editRoom');
+    Route::put('admin/rooms/update/','updateRoom')->name('admin.updateRoom');
     Route::get('admin/rooms/preview/{room_id}','prevOneRoom')->name('admin.prevOneRoom');
     Route::get('admin/rooms/delete/{room_id}','destroyRoom')->name('admin.destroyRoom');
 });

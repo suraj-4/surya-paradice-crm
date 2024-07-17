@@ -79,8 +79,7 @@ class StaffController extends Controller
     /**
      * Display the specified resource.
      */
-    public function prevOneStaff($staff_id)
-    {
+    public function prevOneStaff($staff_id)    {
         $staff = Staff::where('staff_id', $staff_id)->first();
         if ($staff) {
             // Assuming your images are stored in the "storage/images" directory

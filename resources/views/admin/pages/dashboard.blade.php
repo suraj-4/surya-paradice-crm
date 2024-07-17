@@ -172,3 +172,58 @@
     <!-- main body area End -->
 </div>
 @include('admin.footer')
+
+<script>
+  
+  // ApexCharts
+  var options = {
+    series: [
+      {
+        name: "Total Rooms",
+        data: [31, 40, 28, 51, 42, 109, 100],
+      },
+      {
+        name: "Total Earnings",
+        data: [15, 35, 45, 63, 34, 56, 41],
+      },
+      {
+        name: "Total Bookings",
+        data: [21, 52, 45, 32, 44, 34, 95],
+      },
+      {
+        name: "Total Staff",
+        data: [11, 32, 41, 52, 11, 52, 85],
+      },
+    ],
+    chart: {
+      height: 350,
+      type: "area",
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      curve: "smooth",
+    },
+    xaxis: {
+      type: "datetime",
+      categories: [
+        "2018-09-19T00:00:00.000Z",
+        "2018-09-19T01:30:00.000Z",
+        "2018-09-19T02:30:00.000Z",
+        "2018-09-19T03:30:00.000Z",
+        "2018-09-19T04:30:00.000Z",
+        "2018-09-19T05:30:00.000Z",
+        "2018-09-19T06:30:00.000Z",
+      ],
+    },
+    tooltip: {
+      x: {
+        format: "dd/MM/yy HH:mm",
+      },
+    },
+  };
+
+  var chart = new ApexCharts(document.querySelector("#curverChart"), options);
+  chart.render();
+</script>

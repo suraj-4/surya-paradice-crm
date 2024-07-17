@@ -67,7 +67,8 @@
                                                     <div class="form-group row">
                                                         <div class="col-9">
                                                             <select name="user_role" id="change_role" class="form-select">
-                                                                <option selected>Admin</option>
+                                                                <option selected>Select Role</option>
+                                                                <option value="admin">Admin</option>
                                                                 <option value="customer">Customer</option>
                                                             </select>
                                                         </div>
