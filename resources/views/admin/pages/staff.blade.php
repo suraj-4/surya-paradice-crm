@@ -52,7 +52,7 @@
                             <td>
                               <div class="table_img">
                                 @if ($staff->image != "")
-                                  <img src="{{ asset('admin/uploads/staff/'.$staff->image)}}" alt="Surya-Avatar">
+                                  <img src="{{asset('admin/uploads/staff/'.$staff->image)}}" alt="Surya-Avatar">
                                 @endif
                               </div>
                             </td>
@@ -64,26 +64,26 @@
                             <td>{{$staff->staff_joining_date}}</td>
                             <td>
                               <div class="dropdown">
-                                  <button class="btn custom-outline dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                    <i class="bi bi-three-dots-vertical"></i>
-                                  </button>
-                                  <ul class="dropdown-menu tabel_dropdown">
-                                    <li>
-                                      <!-- Button trigger modal -->
-                                      <button type="button" class="btn" onclick="editStaff('{{$staff->staff_id}}')"><i class="bi bi-pencil-square"></i> Edit</button>
-                                    </li>
-                                    <li>
-                                      <!-- Button trigger modal -->
-                                      <button type="button" class="btn" onclick="prevStaff('{{$staff->staff_id}}')"><i class="bi bi-eye"></i> Preview </button>
-                                    </li>
-                                    <li>
-                                      <form action="{{route ('admin.destroyStaff',$staff->staff_id)}}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn"><i class="bi bi-trash3"></i> Delete</button>
-                                      </form>
-                                    </li>
-                                  </ul>
+                                <button class="btn custom-outline dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                  <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                                <ul class="dropdown-menu tabel_dropdown">
+                                  <li>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn" onclick="editStaff('{{$staff->staff_id}}')"><i class="bi bi-pencil-square"></i> Edit</button>
+                                  </li>
+                                  <li>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn" onclick="prevStaff('{{$staff->staff_id}}')"><i class="bi bi-eye"></i> Preview </button>
+                                  </li>
+                                  <li>
+                                    <form action="{{route ('admin.destroyStaff',$staff->staff_id)}}" method="POST" enctype="multipart/form-data">
+                                      @csrf
+                                      @method('DELETE')
+                                      <button type="submit" class="btn"><i class="bi bi-trash3"></i> Delete</button>
+                                    </form>
+                                  </li>
+                                </ul>
                               </div>
                             </td>
                           </tr>
@@ -277,31 +277,29 @@
           <div class="modal-body">
             <div class="preview_content">
               <div class="modal_img">
-              @if ($staff->image != "")
                 <img src="" id="prev_img" alt="Surya-Avatar">
-              @endif
               </div>
               <div class="modal_content">
                 <div class="d-flex mb-3">
-                  <strong>Name</strong><h3 id="prev_name">{{$staff->staff_name}}</h3>
+                  <strong>Name</strong><h3 id="prev_name"></h3>
                 </div>
                 <div class="d-flex mb-3">
-                  <strong>Designation</strong><h4 id="prev_desig">{{$staff->staff_designation}}</h4>
+                  <strong>Designation</strong><h4 id="prev_desig"></h4>
                 </div>
                 <div class="d-flex mb-3">
-                  <strong>Mobile</strong><a href="" id="prev_mobile">{{$staff->staff_mobile}}</a>
-                </div>
-                
-                <div class="d-flex mb-3">
-                  <strong>Email</strong><a href="" id="prev_email">{{$staff->staff_email}}</a>
+                  <strong>Mobile</strong><a href="" id="prev_mobile"></a>
                 </div>
                 
                 <div class="d-flex mb-3">
-                  <strong>Address</strong><p id="prev_address">{{$staff->staff_address}}</p>
+                  <strong>Email</strong><a href="" id="prev_email"></a>
+                </div>
+                
+                <div class="d-flex mb-3">
+                  <strong>Address</strong><p id="prev_address"></p>
                 </div>
                
                 <div class="d-flex mb-3">
-                  <strong>Joining Date</strong><p id="prev_join_date">{{$staff->staff_joining_date}}</p>
+                  <strong>Joining Date</strong><p id="prev_join_date"></p>
                 </div>
                 
               </div>
