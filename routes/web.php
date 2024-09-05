@@ -8,9 +8,7 @@ use App\Http\Controllers\admin\StaffController;
 use App\Http\Controllers\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('home');
-// })->name('home');
+Route::get('/', function () { return view('home');})->name('home');
 
 
 //Guest Middleware
@@ -51,14 +49,14 @@ Route::group(['prefix' => 'admin'],function(){
 });
 
 // User Route
-Route::controller(SettingsController::class)->group(function(){
+    Route::controller(SettingsController::class)->group(function(){
     Route::get('admin/user/edit/{user}','editUser')->name('admin.editUser');
     Route::put('admin/user/update/{user}','updateUser')->name('admin.updateUser');
     Route::delete('admin/user/detete/{user}','destroyUser')->name('admin.destroyUser');
 });
 
 // Rooms Route
-Route::controller(RoomController::class)->group(function(){
+    Route::controller(RoomController::class)->group(function(){
     Route::post('admin/rooms','addRoom')->name('admin.addRooms');
     Route::get('admin/rooms/edit/{room_id}','editRoom')->name('admin.editRoom');
     Route::put('admin/rooms/update/','updateRoom')->name('admin.updateRoom');
@@ -67,7 +65,7 @@ Route::controller(RoomController::class)->group(function(){
 });
 
 // Staff Routes
-Route::controller(StaffController::class)->group(function(){
+    Route::controller(StaffController::class)->group(function(){
     Route::post('admin/staff','addStaff')->name('admin.addStaff');
     Route::get('admin/staff/edit/{staff_id}','editStaff')->name('admin.editStaff');
     Route::get('admin/staff/preview/{staff_id}','prevOneStaff')->name('admin.prevOneStaff');

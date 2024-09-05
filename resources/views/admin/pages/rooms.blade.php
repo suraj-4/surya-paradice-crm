@@ -365,9 +365,6 @@
 <!-- Rich Text Editor -->
 <script>
   var roomEditor = {}
-  //   roomEditor.toolbar = "mytoolbar";
-  //   roomEditor.toolbar_mytoolbar = "{bold,italic}|{justifyleft,justifycenter,justifyright,justifyfull}|{forecolor,backcolor}|removeformat"
-  // + "#{undo,redo,fullscreenenter,fullscreenexit,togglemore}";
   var addEditor = new RichTextEditor("#addRichTextEditor", roomEditor);
   var editEditor = new RichTextEditor("#editRichTextEditor", roomEditor);
 </script>

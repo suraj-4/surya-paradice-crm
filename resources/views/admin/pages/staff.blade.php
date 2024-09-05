@@ -37,8 +37,8 @@
                           <th>Image</th>
                           <th>Name</th>
                           <th>Designation</th>
-                          <th>Mobile</th>
                           <th>Email</th>
+                          <th>Mobile</th>
                           <th>Address</th>
                           <th>Joining</th>
                           <th>Action</th>
@@ -96,8 +96,8 @@
                           <th>Image</th>
                           <th>Name</th>
                           <th>Designation</th>
-                          <th>Mobile</th>
                           <th>Email</th>
+                          <th>Mobile</th>
                           <th>Address</th>
                           <th>Joining</th>
                           <th>Action</th>
@@ -310,7 +310,6 @@
       </div>
     </div>
 
-
 </div>
 @include('admin.footer')
 
@@ -320,25 +319,25 @@
     $('#editStaff').modal('show');
 
     $.ajax({
-        url : "{{ route('admin.editStaff', '') }}/"+staffId,
-        type : 'GET',
-        dataType : 'json',
-        success : function(result){
-          // console.log(result);
-          const data = result.staff;
-          // console.log(data);
+      url : "{{ route('admin.editStaff', '') }}/"+staffId,
+      type : 'GET',
+      dataType : 'json',
+      success : function(result){
+        // console.log(result);
+        const data = result.staff;
+        // console.log(data);
 
-          $('#staff_id').val(data.staff_id);
-          $('#updt_name').val(data.staff_name);
-          $('#updt_designation').val(data.staff_designation);
-          $('#updt_email').val(data.staff_email);
-          $('#updt_mobile').val(data.staff_mobile);
-          $('#updt_address').val(data.staff_address);
-          $('#updt_joining').val(data.staff_joining_date);
-          $('#updt_image').val(data.image);
-            // console.log("===== " + result + " =====");
+        $('#staff_id').val(data.staff_id);
+        $('#updt_name').val(data.staff_name);
+        $('#updt_designation').val(data.staff_designation);
+        $('#updt_email').val(data.staff_email);
+        $('#updt_mobile').val(data.staff_mobile);
+        $('#updt_address').val(data.staff_address);
+        $('#updt_joining').val(data.staff_joining_date);
+        $('#updt_image').val(data.image);
+          // console.log("===== " + result + " =====");
 
-        }
+      }
     });
   }
 </script>
@@ -347,7 +346,6 @@
 <script>
   function prevStaff(staffId) {
     $('#prevOneStaff').modal('show');
-
     $.ajax({
       url : "{{ route('admin.prevOneStaff', '') }}/"+staffId,
       type : 'GET',

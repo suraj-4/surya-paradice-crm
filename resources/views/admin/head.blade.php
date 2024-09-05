@@ -1,11 +1,12 @@
 <header class="lt_rt_wrapper justify-content-between">
     <div class="left_area">
         <div class="searchField">
-        <input type="text" class="form-control shadow-none" placeholder="Search here..." id="mainSearch">
-        <span class="searchIcon"><i class="bi bi-search"></i></span>
+            <input type="text" class="form-control shadow-none" placeholder="Search here..." id="mainSearch">
+            <span class="searchIcon"><i class="bi bi-search"></i></span>
         </div>
     </div>
     <div class="right_area">
+        <a href="{{Route ('home')}}" target="_blank">Got to Website</a>
         <div class="toggle_wrap"><div class="toggle"></div></div>
         
         <div class="dropdown">

@@ -425,8 +425,11 @@ header{
     transform: translateY(-50%);
 }
 
-.left_area,.right_area{
+/* .left_area,.right_area{
 	width: 50%;
+} */
+.left_area{
+	width: 30%;
 }
 .right_area .btn{
 	width: 2.5rem;
@@ -440,6 +443,7 @@ header{
 	color: var(--bgColorPrimary);
 }
 .right_area{
+	width: 70%;
 	gap: 1rem;
 	display: flex;
 	align-items: center;
