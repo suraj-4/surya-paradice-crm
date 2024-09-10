@@ -34,7 +34,7 @@
                 <thead class="custom-bg">
                   <tr>
                     <th>No</th>
-                    <th>Room Number</th>
+                    <th>Room No</th>
                     <th>Hotel Name</th>
                     <th>Room Type</th>
                     <th>Room Status</th>
@@ -79,7 +79,7 @@
                 <tfoot class="custom-bg">
                   <tr>
                     <th>No</th>
-                    <th>Room Number</th>
+                    <th>Room No</th>
                     <th>Hotel Name</th>
                     <th>Room Type</th>
                     <th>Room Status</th>

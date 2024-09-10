@@ -655,7 +655,7 @@ rte-resizecorner{
 	margin-bottom: 0.3rem;
 }
 .field{
-	height: 2.5rem;
+	/* height: auto; */
 	padding: 0.5rem;
 	border: var(--border);
 	border-radius: var(--border-radius);
@@ -665,3 +665,6 @@ rte-resizecorner{
 	overflow: hidden;
 	border-radius: var(--border-radius);
 }
+/* #prev_hotelLoc{
+
+} */

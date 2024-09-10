@@ -6,9 +6,14 @@ use App\Http\Controllers\admin\RoomController;
 use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\admin\StaffController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\frontendShowController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () { return view('home');})->name('home');
+// Route::get('/', function () { return view('frontend.home');})->name('home');
+Route::get('/about', function () { return view('frontend.about');})->name('about');
+// Route::get('/room', function () { return view('frontend.room');})->name('room');
+Route::get('/room', [frontendShowController::class, 'showAllRooms'])->name('room');
+Route::get('/contact', function () { return view('frontend.contact');})->name('contact');
 
 
 //Guest Middleware
@@ -23,7 +28,9 @@ Route::group(['middleware' => 'guest'], function () {
 //Authenticated Middleware
 Route::group(['middleware' => 'auth'], function () {
     Route::get('logout',[AuthenticationController::class, 'logout'])->name('logout');
-    Route::get('/', function () { return view('home');  })->name('home');
+    Route::get('/', function () { return view('frontend.home');  })->name('home');
+    Route::get('/', [frontendShowController::class, 'showRoomsType'])->name('home');
+
 });
 
 // Authentication for Dashboard

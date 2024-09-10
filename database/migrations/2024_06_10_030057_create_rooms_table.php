@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id('room_id'); // This is the auto_increment primary key
             $table->integer('room_number'); // This is a regular integer column
             $table->string('hotel_name');
-            $table->string('hotel_image');
+            $table->string('hotel_image')->nullable();
             $table->enum('room_type', ['single','double','twin','triple','quad','family','suite','studio','deluxe','executive','luxury','presidentialSuite','accessible','penthouse'])->default('single');
             $table->string('room_price');
             $table->enum('room_status', ['available', 'reserved', 'occupied','pending','checkedOut','outOfService'])->default('available');
             $table->string('room_excerpt')->nullable();
             $table->string('hotel_location')->nullable();
             $table->string('hotel_map')->nullable();
-            $table->string('room_desc')->nullable();
+            $table->text('room_desc')->nullable();
             $table->timestamps();
         });
     }

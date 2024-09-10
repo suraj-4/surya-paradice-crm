@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="right_area">
-        <a href="{{Route ('home')}}" target="_blank">Got to Website</a>
+        <a href="{{Route ('home')}}" target="_blank">Go to Website</a>
         <div class="toggle_wrap"><div class="toggle"></div></div>
         
         <div class="dropdown">
